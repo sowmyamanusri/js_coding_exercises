@@ -3,7 +3,10 @@
  * @param {Number} n
  */
 const sumDigits = n => {
+  //Input Validation
   if (n === undefined) throw new Error("n is required");
+  // sum of all its digits
+  return n.reduce((a, b) => a + b, 0);
 };
 
 /**
@@ -15,8 +18,15 @@ const sumDigits = n => {
  * @param {Number} step
  */
 const createRange = (start, end, step) => {
+  //Input Validation
   if (start === undefined) throw new Error("start is required");
   if (end === undefined) throw new Error("end is required");
+  // Assign
+  let newArr = [];
+  for (let i = start; i < end; i = i + step) {
+    newArr.push(i);
+  }
+  return newArr;
 };
 
 /**
@@ -49,9 +59,23 @@ const createRange = (start, end, step) => {
  * @param {Array} users
  */
 const getScreentimeAlertList = (users, date) => {
+  //Input Validation
   if (users === undefined) throw new Error("users is required");
   if (date === undefined) throw new Error("date is required");
+  // search for record which is matching specified  date and check for application usage exceeding 100mins and return the username of matching record
+  let userArr = [];
+  users.forEach(user => {
+    user.screenTime.forEach(st => {
+      if (st.date === date) {
+        if ((st.usage.twitter + st.usage.instagram + st.usage.facebook) > 100) {
+          userArr.push(user.username);
+        }
+      }
+    })
+  })
+  return userArr;
 };
+
 
 /**
  * This function will receive a hexadecimal color code in the format #FF1133. A hexadecimal code is a number written in hexadecimal notation, i.e. base 16. If you want to know more about hexadecimal notation:
@@ -64,7 +88,13 @@ const getScreentimeAlertList = (users, date) => {
  * @param {String} str
  */
 const hexToRGB = hexStr => {
+  //into Validation
   if (hexStr === undefined) throw new Error("hexStr is required");
+  // convert 2 digit hexdecimal to decimal and assign it RGB variable in the specified format
+  var r = parseInt(hexStr.slice(1, 3), 16),
+    g = parseInt(hexStr.slice(3, 5), 16),
+    b = parseInt(hexStr.slice(5, 7), 16);
+  return "rgb(" + r + ", " + g + ", " + b + ")";
 };
 
 /**
@@ -79,6 +109,7 @@ const hexToRGB = hexStr => {
  */
 const findWinner = board => {
   if (board === undefined) throw new Error("board is required");
+  board.filter(x => {})
 };
 
 module.exports = {

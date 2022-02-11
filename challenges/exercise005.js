@@ -1,7 +1,9 @@
 const findNextNumber = (nums, n) => {
+  //Input Validation
   if (nums === undefined) throw new Error("nums is required");
   if (n === undefined) throw new Error("n is required");
-  // Your code here!
+
+  // finding the next number for the given number, if number is in last position setting it to null
   if (!nums.includes(n)) {
     return null;
   } else if (nums[nums.length - 1] === n) {
@@ -14,8 +16,9 @@ const findNextNumber = (nums, n) => {
 
 
 const count1sand0s = str => {
+  //Input Validation
   if (str === undefined) throw new Error("str is required");
-  // Your code here!
+  // counting  number of ones and zero  in the given string
   let countOne = 0;
   let countZero = 0;
   let x = str.split("");
@@ -36,26 +39,27 @@ const count1sand0s = str => {
 };
 
 const reverseNumber = n => {
+  //Input Validation
   if (n === undefined) throw new Error("n is required");
-  // Your code here!
+  // reverse the given number by converting it to a string
   return Number(n.toString().split("").reverse().join(""));
 
 };
 
+
 const sumArrays = arrs => {
-
-  let count = 0;
+  //Input Validation
   if (arrs === undefined) throw new Error("arrs is required");
-
+  // counting items of nested arrays
+  let count = 0;
   arrs.forEach(item => item.forEach(item2 => count = count + item2));
-
   return count;
-
 }
 
 const arrShift = arr => {
+  //Input Validation
   if (arr === undefined) throw new Error("arr is required");
-  // Your code here!
+  // Swapping the first and last elements in the array
   let temp = arr[0];
   if (arr.length >= 2) {
     arr[0] = arr[arr.length - 1];
@@ -65,10 +69,23 @@ const arrShift = arr => {
 };
 
 const findNeedle = (haystack, searchTerm) => {
+  //Input Validation
   if (haystack === undefined) throw new Error("haystack is required");
   if (searchTerm === undefined) throw new Error("searchTerm is required");
-  // Your code here!
-  if (Object.values(haystack).indexOf(searchTerm) > -1) return true
+  // 
+  let count = 0;
+  Object.values(haystack).forEach(x => {
+    console.log(x);
+    if (x.contain(searchTerm) > -1) count++;
+  })
+
+
+  if (count === 0) return false;
+  else if (count >= 1) return true;
+
+
+
+  //if (Object.values(haystack).indexOf(searchTerm) > -1) return true
   //if (Object.values(haystack).includes(searchTerm) === true) return true
   // else return false;
   // if (haystack.includes(searchTerm)) return true;
@@ -81,15 +98,6 @@ const findNeedle = (haystack, searchTerm) => {
 const getWordFrequencies = str => {
   if (str === undefined) throw new Error("str is required");
   // Your code here!
-  let obj = {};
-
-  //let wordFre = new Map();
-  let y = str;
-  y.split(" ").forEach(word => obj[word] = (str.match(/word/g) || []).length);
-  return obj;
-
-
-  //forEach(word => wordFre.set(word, str.count(word))).map.forEach((value, key) => (obj[key] = value));
 
 }
 
