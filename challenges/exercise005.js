@@ -72,32 +72,29 @@ const findNeedle = (haystack, searchTerm) => {
   //Input Validation
   if (haystack === undefined) throw new Error("haystack is required");
   if (searchTerm === undefined) throw new Error("searchTerm is required");
-  // 
+
+  // converting object value to string and comparing with given string value 
   let count = 0;
-  Object.values(haystack).forEach(x => {
-    console.log(x);
-    if (x.contain(searchTerm) > -1) count++;
-  })
+  Object.values(haystack).map(x => {
+    if (x.toString().toLowerCase().indexOf(searchTerm.toLowerCase()) != -1) {
+      count++;
+    }
+  });
 
-
-  if (count === 0) return false;
-  else if (count >= 1) return true;
-
-
-
-  //if (Object.values(haystack).indexOf(searchTerm) > -1) return true
-  //if (Object.values(haystack).includes(searchTerm) === true) return true
-  // else return false;
-  // if (haystack.includes(searchTerm)) return true;
-
-  //let x = haystack.find(item => item.id.toLowerCase() === searchTerm.toLowerCase())
-  //console.log(x);
-
-};
+  if (count >= 1) {
+    return true;
+  } else if (count === 0)
+    return false;
+}
 
 const getWordFrequencies = str => {
+  //Input Validation
   if (str === undefined) throw new Error("str is required");
-  // Your code here!
+  // setting object and converting sting to lowercase and filtering special character in the string.Mapping each words and taking frequency of that word
+  let obj = {};
+  let tempStr = str.toLowerCase().replace(/[^a-zA-Z ]/gi, "");
+  tempStr.split(' ').map(word => obj[word] ? obj[word]++ : obj[word] = 1);
+  return obj;
 
 }
 
