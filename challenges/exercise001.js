@@ -13,14 +13,9 @@ function generateInitials(firstName, lastName) {
   if (firstName === undefined) throw new Error("firstName is required");
   if (lastName === undefined) throw new Error("lastName is required");
 
-  // Taking initials of firstName & lastName
-  let initial1 = firstName.substring(0, 1).toUpperCase();
-  let initial2 = lastName.substring(0, 1).toUpperCase();
+  // return initials of firstname and lastname
+  return firstName.substring(0, 1).toUpperCase() + "." + lastName.substring(0, 1).toUpperCase();
 
-  // concat two initials
-  let initial = initial1 + "." + initial2;
-
-  return initial;
 }
 
 function addVAT(originalPrice, vatRate) {
@@ -30,15 +25,15 @@ function addVAT(originalPrice, vatRate) {
   if (vatRate === undefined) throw new Error("vatRate is required");
 
   //calculate value of percentage
-  let percentValue = (originalPrice * vatRate) / 100;
+  let vatAmount = (originalPrice * vatRate) / 100;
 
   // If the passed value is decimal then fix the decimal to 2 digits and convert to number
-  if ((percentValue - Math.floor(percentValue)) !== 0) {
-    let totalPrice = (originalPrice + percentValue).toFixed(2);
-    return Number(totalPrice);
+  if ((vatAmount - Math.floor(vatAmount)) !== 0) {
+    let amount = (originalPrice + vatAmount).toFixed(2);
+    return Number(amount);
 
   } else {
-    return (originalPrice + percentValue);
+    return (originalPrice + vatAmount);
   }
 }
 
@@ -49,14 +44,14 @@ function getSalePrice(originalPrice, reduction) {
   if (reduction === undefined) throw new Error("reduction is required");
 
   //calculate value of percentage
-  let percentValue = (originalPrice * reduction) / 100;
+  let discount = (originalPrice * reduction) / 100;
 
   // If the passed value is decimal then fix the decimal to 2 digits and convert to number
-  if ((percentValue - Math.floor(percentValue)) !== 0) {
-    let totalPrice = (originalPrice - percentValue).toFixed(2);
-    return Number(totalPrice);
+  if ((discount - Math.floor(discount)) !== 0) {
+    let salePrice = (originalPrice - discount).toFixed(2);
+    return Number(salePrice);
   } else {
-    return (originalPrice - percentValue);
+    return (originalPrice - discount);
   }
 }
 
@@ -68,7 +63,7 @@ function getMiddleCharacter(str) {
   // Finding the middle character
   if (str.length % 2 === 1) {
     return str.substring((str.length / 2) + 1, (str.length / 2));
-  } else if (str.length % 2 === 0) {
+  } else {
     return str.substring((str.length / 2) - 1, (str.length / 2) + 1);
   }
 }
@@ -86,12 +81,9 @@ function reverseAllWords(words) {
 
   //Input Validation
   if (words === undefined) throw new Error("words is required");
-
   // reversing each item in an array
-  for (let index = 0; index < words.length; index++) {
-    words[index] = words[index].split("").reverse().join("");
-  }
-  return words;
+  return words.map(word => word.split("").reverse().join(""));
+
 }
 
 function countLinuxUsers(users) {
@@ -101,12 +93,9 @@ function countLinuxUsers(users) {
 
   //checking for linux user and incrementing the count
   let count = 0;
-  for (let i = 0; i < users.length; i++) {
-    if (users[i].type === "Linux") {
-      console.log(users[i].type);
-      count = count + 1;
-    }
-  }
+  users.forEach(user => {
+    if (user.type === "Linux") count++
+  });
   return count;
 }
 
@@ -120,7 +109,7 @@ function getMeanScore(scores) {
   let meanScore = sumScore / scores.length;
 
   // If the value is decimal then fix the decimal to 2 digits and convert to number 
-  if (meanScore - Math.floor(meanScore) !== 0) {
+  if (meanScore - Math.round(meanScore) !== 0) {
     let score = meanScore.toFixed(2);
     return Number(score);
   }
@@ -131,19 +120,17 @@ function simpleFizzBuzz(n) {
 
   //Input Validation
   if (n === undefined) throw new Error("n is required");
-
   // returning the  appropriate word based on the divisibility of  given number
-  for (let i = 1; i <= n; i++) {
-    if (n % 3 === 0 && n % 5 === 0) {
-      return "fizzbuzz";
-    } else if (n % 3 === 0) {
-      return "fizz";
-    } else if (n % 5 === 0) {
-      return "buzz";
-    } else {
-      return n;
-    }
+  if (n % 3 === 0 && n % 5 === 0) {
+    return "fizzbuzz";
+  } else if (n % 3 === 0) {
+    return "fizz";
+  } else if (n % 5 === 0) {
+    return "buzz";
+  } else {
+    return n;
   }
+
 }
 
 module.exports = {
