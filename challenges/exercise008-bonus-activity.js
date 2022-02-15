@@ -1,32 +1,45 @@
 // Spread Syntax Bonus activity
 
-function printColours(colours){
+function printColours(colours) {
+    // Input Validation
     if (!colours) throw new Error("colour is required");
-    // Your solution using the spread operator here!
+    //returning the colours 
+    return [...colours];
 }
 
-function shoppingList(list, newItem){
+function shoppingList(list, newItem) {
+
+    // input validation
     if (!list) throw new Error("list is required");
     if (!newItem) throw new Error("newItem is required");
-    // Your solution using the spread operator here!
+    //concat arrays
+    let newArr = [...list, ...newItem]
+    return newArr
 }
 
-function highestNumber(numbers){
+function highestNumber(numbers) {
+    //Input Validation
     if (!numbers) throw new Error("numbers are required");
-    // Your solution using the spread operator here!
+
+    // Max number in the array
+    return Math.max(...numbers);
 }
 
-function splitThatString(string){
+function splitThatString(string) {
+    // Input Validation
     if (!string) throw new Error("string is required");
-    // Your solution using the spread operator here!
+    // return the string
+    return [...string]
 }
-
 
 // Optional Chaining Bonus activity!
 
-function addressLookUp(user){
+function addressLookUp(user) {
+    // Input Validation
     if (!user) throw new Error("user is required");
-    // Your solution using optional chaining here!
+
+    // checking the object is containing the property
+    return user.address ? .postcode;
 }
 
 
