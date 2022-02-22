@@ -51,11 +51,9 @@ function countSheep(arr) {
 
   // count number of sheep in array
   let count = 0;
-  for (let i in arr) {
-    if (arr[i] === "sheep") {
-      count++;
-    }
-  }
+  arr.forEach(pet => {
+    if (pet === "sheep") count++
+  });
   return count;
 }
 

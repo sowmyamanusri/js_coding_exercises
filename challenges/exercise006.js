@@ -6,18 +6,18 @@
  */
 const sumMultiples = arr => {
   //Input Validation
-  if (arr === undefined) throw new Error("arr is required");
-  // checking given number is divisible by 3 and 5 and push into empty array
-  let newArr = [];
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i] % 5 === 0 && arr[i] % 3 === 0) {
-      newArr.push(arr[i]);
+  if (!arr) throw new Error("arr is required");
+  if (!Array.isArray(arr)) throw new Error("An array is required")
+  // checking given number is multiple by 3 and 5 and sum of the numbers
+  let sum = 0;
+  arr.forEach(num => {
+    if (num % 5 === 0 || num % 3 === 0) {
+      sum += num;
     }
-  }
-  console.log(newArr);
-  const sum = newArr.reduce((partialSum, a) => partialSum + a, 0);
+  });
   return sum;
-};
+}
+
 
 /**
  * This function will receive a string of characters and should return true/false depending on whether it is a valid DNA string. A valid DNA string may contain characters C, G, T or A only.
@@ -50,7 +50,7 @@ const getComplementaryDNA = str => {
     'T': 'A'
   };
   // for each character in a string find the DNA mapping and replace the matching character and join back to a string.
-  return str.split('').filter(x => x.match(/A|T|G|C/g)).map(y => DNAmapping[y]).join('');
+  return str.toUpperCase().split('').filter(x => x.match(/A|T|G|C/g)).map(y => DNAmapping[y]).join('');
 
 };
 

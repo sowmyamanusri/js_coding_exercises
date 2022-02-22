@@ -5,13 +5,8 @@ function getSquares(nums) {
 
   //return empty array if there are no items
   if (nums.length === 0) return [];
-  let sqrNum = [];
+  return nums.map(num => num * num);
 
-  // return array with square numbers
-  for (let i = 0; i < nums.length; i++) {
-    sqrNum.push(nums[i] * nums[i]);
-  }
-  return sqrNum;
 }
 
 
@@ -26,7 +21,6 @@ function camelCaseWords(words) {
     myVar = myVar + words[index];
   }
   return myVar;
-
 }
 
 function getTotalSubjects(people) {
@@ -35,18 +29,18 @@ function getTotalSubjects(people) {
 
   // calculate total number of subjects in the people collection
   let subCount = 0;
-  let sub = [];
-  for (let x of people) {
-    if (x.subjects.length !== 0) subCount++;
-    for (let y of x.subjects) {
-      sub.push(y);
+  let subject = [];
+  for (let item of people) {
+    if (item.subjects.length !== 0) subCount++;
+    for (let sub of item.subjects) {
+      subject.push(sub);
     }
   }
   //return 0,if no subjects found .Return 1 at least one subject found, else return total subjects
   if (subCount === 0) return 0;
   if (subCount === 1) return 1;
   else {
-    return sub.length;
+    return subject.length;
   }
 
 }
@@ -58,8 +52,8 @@ function checkIngredients(menu, ingredient) {
 
   // find the ingredient in the given menu
   let count = 0;
-  for (let x of menu) {
-    if (x.ingredients.includes(ingredient)) count++;
+  for (let list of menu) {
+    if (list.ingredients.includes(ingredient)) count++;
   }
   if (count === 0) {
     return false;
