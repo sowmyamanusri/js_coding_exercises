@@ -51,7 +51,7 @@ const sumArrays = arrs => {
   //Input Validation
   if (arrs === undefined) throw new Error("arrs is required");
   // counting items of nested arrays
-  const count = 0;
+  let count = 0;
   arrs.forEach(item => item.forEach(item2 => count = count + item2));
   return count;
 }

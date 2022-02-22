@@ -39,7 +39,7 @@ function addressLookUp(user) {
     if (!user) throw new Error("user is required");
 
     // checking the object is containing the property
-    return user.address ? .postcode;
+    return user.address ? .postcode
 }
 
 
