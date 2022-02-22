@@ -66,16 +66,13 @@ const isItPrime = n => {
   // checking given  number is prime number
   if (n <= 1) return false;
   // checking given number is even number return false
-  if (n % 2 === 0 && n > 2) return false;
+  if (n % 2 === 0) return false;
   //sqrt of given number
   let s = Math.sqrt(n);
   // checking given number is prime number return true
-  for (let i = 3; i <= s; i += 2) {
-    if (n % i == 0) {
-      return false;
-    } else {
-      return true;
-    }
+  for (let i = 2; i <= s; i += 2) {
+    if (n % i == 0) return false;
+    return true;
   }
 }
 
@@ -97,7 +94,7 @@ const createMatrix = (n, fill) => {
   if (fill === undefined) throw new Error("fill is required");
 
   // creating the n:n dimension matrix
-  var multiArr = [n];
+  const multiArr = [n];
   for (let k = 0; k < n; k++) {
     multiArr[k] = new Array(n);
   }

@@ -3,6 +3,8 @@ const {
     isValidDNA,
     getComplementaryDNA,
     isItPrime,
+    createMatrix,
+    areWeCovered
 } = require("../challenges/exercise006.js")
 
 describe("sumMultiples", () => {
@@ -88,8 +90,118 @@ describe("isItPrime", () => {
             isItPrime()
         }).toThrow("n is required")
 
+
+    })
+    test("return false when number less than equal to one", () => {
+        expect(isItPrime(1)).toBe(false);
+    })
+    test("return false when number is even", () => {
+        expect(isItPrime(4)).toBe(false);
+    })
+    test("return true if number is prime", () => {
+        expect(isItPrime(13)).toBe(true);
+    })
+})
+
+describe("createMatrix", () => {
+    test("throws an error if number is not passed and fill is not passed", () => {
         expect(() => {
-            isItPrime("ABC")
+            createMatrix()
         }).toThrow("n is required")
+    })
+    it("returns the matrix 1*1 and fill with \"foo\" ", () => {
+        const singleMatrix = createMatrix(1, "foo");
+        const expected = [
+            ["foo"]
+        ];
+        expect(singleMatrix).toEqual(expected);
+
+    })
+
+    it("returns the matrix 3*3 and fill with \"foo\" ", () => {
+        const singleMatrix = createMatrix(3, "foo");
+        const expected = [
+            ["foo", "foo", "foo"],
+            ["foo", "foo", "foo"],
+            ["foo", "foo", "foo"]
+        ];
+        expect(singleMatrix).toEqual(expected);
+
+    })
+    it("returns the matrix 2*2 and fill with \"foo\" ", () => {
+        const singleMatrix = createMatrix(2, "foo");
+        const expected = [
+            ["foo", "foo"],
+            ["foo", "foo"]
+
+        ];
+        expect(singleMatrix).toEqual(expected);
+
+    })
+})
+
+describe("areWeCovered", () => {
+    test("throws an error if staff and day is not passed", () => {
+        expect(() => {
+            areWeCovered()
+        }).toThrow("staff is required")
+    })
+
+
+    test("return false if there is no staff", () => {
+        expect(areWeCovered([], "Sunday")).toBe(false);
+        expect(areWeCovered([], "Monday")).toBe(false);
+        expect(areWeCovered([], "Tuesday")).toBe(false);
+        expect(areWeCovered([], "Wednesday")).toBe(false);
+        expect(areWeCovered([], "Thursday")).toBe(false);
+        expect(areWeCovered([], "Friday")).toBe(false);
+        expect(areWeCovered([], "Saturday")).toBe(false);
+    })
+    test("return false if the staff is less than 3 on specified day", () => {
+        const staff = [{
+                name: "Sally",
+                rota: ["Monday", "Tuesday", "Friday"]
+            },
+            {
+                name: "Pedro",
+                rota: ["Saturday", "Sunday"]
+            },
+            {
+                name: "Max",
+                rota: ["Monday", "Tuesday", "Thursday"]
+            },
+            {
+                name: "Mark",
+                rota: ["Saturday", "Friday", "Wednesday"]
+            },
+
+
+        ]
+
+        expect(areWeCovered(staff, "Saturday")).toBe(false);
+    })
+    test("return true if the three is working on specified day", () => {
+        const staff = [{
+                name: "Sally",
+                rota: ["Monday", "Tuesday", "Friday"]
+            },
+            {
+                name: "Pedro",
+                rota: ["Saturday", "Tuesday", "Friday"]
+            },
+            {
+                name: "Max",
+                rota: ["Monday", "Tuesday", "Thursday"]
+            },
+            {
+                name: "Mark",
+                rota: ["Monday", "Friday", "Wednesday"]
+            },
+
+
+        ]
+
+        expect(areWeCovered(staff, "Monday")).toBe(true);
+        expect(areWeCovered(staff, "Tuesday")).toBe(true)
     })
 })

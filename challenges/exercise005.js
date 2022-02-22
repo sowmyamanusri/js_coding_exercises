@@ -21,8 +21,8 @@ const count1sand0s = str => {
   // counting  number of ones and zero  in the given string
   let countOne = 0;
   let countZero = 0;
-  let x = str.split("");
-  x.forEach(item => {
+  let newStr = str.split("");
+  newStr.forEach(item => {
     switch (item) {
       case '1':
         countOne++;
@@ -51,7 +51,7 @@ const sumArrays = arrs => {
   //Input Validation
   if (arrs === undefined) throw new Error("arrs is required");
   // counting items of nested arrays
-  let count = 0;
+  const count = 0;
   arrs.forEach(item => item.forEach(item2 => count = count + item2));
   return count;
 }
@@ -60,7 +60,7 @@ const arrShift = arr => {
   //Input Validation
   if (arr === undefined) throw new Error("arr is required");
   // Swapping the first and last elements in the array
-  let temp = arr[0];
+  const temp = arr[0];
   if (arr.length >= 2) {
     arr[0] = arr[arr.length - 1];
     arr[arr.length - 1] = temp;
@@ -91,8 +91,8 @@ const getWordFrequencies = str => {
   //Input Validation
   if (str === undefined) throw new Error("str is required");
   // setting object and converting sting to lowercase and filtering special character in the string.Mapping each words and taking frequency of that word
-  let obj = {};
-  let tempStr = str.toLowerCase().replace(/[^a-zA-Z ]/gi, "");
+  const obj = {};
+  const tempStr = str.toLowerCase().replace(/[^a-zA-Z ]/gi, "");
   tempStr.split(' ').map(word => obj[word] ? obj[word]++ : obj[word] = 1);
   return obj;
 
