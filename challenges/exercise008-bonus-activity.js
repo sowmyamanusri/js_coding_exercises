@@ -26,7 +26,7 @@ function splitThatString(string) {
 
 function addressLookUp(user) {
     if (!user) throw new Error("user is required");
-    return user.address ? .postcode
+    return user.address?.postcode
 }
 
 
