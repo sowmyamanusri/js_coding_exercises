@@ -5,10 +5,8 @@
  * @returns {Number}
  */
 const sumMultiples = arr => {
-  //Input Validation
   if (!arr) throw new Error("arr is required");
   if (!Array.isArray(arr)) throw new Error("An array is required")
-  // checking given number is multiple by 3 and 5 and sum of the numbers
   let sum = 0;
   arr.forEach(num => {
     if (num % 5 === 0 || num % 3 === 0) {
@@ -25,13 +23,10 @@ const sumMultiples = arr => {
  * @returns {Boolean}
  */
 const isValidDNA = str => {
-  //Input Validation
   if (str === undefined) throw new Error("str is required");
-
-  //testing string with regex returns boolean
   const regex = /[GATC]/gi;
-  const found = regex.test(str);
-  return found;
+  return (regex.test(str));
+
 }
 
 /**
@@ -40,7 +35,6 @@ const isValidDNA = str => {
  * @returns {String}
  */
 const getComplementaryDNA = str => {
-  //input Validation
   if (str === undefined) throw new Error("str is required");
   // mapping DNA characters
   const DNAmapping = {
@@ -49,8 +43,7 @@ const getComplementaryDNA = str => {
     'A': 'T',
     'T': 'A'
   };
-  // for each character in a string find the DNA mapping and replace the matching character and join back to a string.
-  return str.toUpperCase().split('').filter(x => x.match(/A|T|G|C/g)).map(y => DNAmapping[y]).join('');
+  return str.toUpperCase().split('').filter(letter => letter.match(/A|T|G|C/g)).map(char => DNAmapping[char]).join('');
 
 };
 
@@ -60,17 +53,12 @@ const getComplementaryDNA = str => {
  * @returns {Boolean}
  */
 const isItPrime = n => {
-  //Input Validation
-  if (n === undefined) throw new Error("n is required");
 
-  // checking given  number is prime number
+  if (n === undefined) throw new Error("n is required");
   if (n <= 1) return false;
-  // checking given number is even number return false
   if (n % 2 === 0) return false;
-  //sqrt of given number
-  let s = Math.sqrt(n);
-  // checking given number is prime number return true
-  for (let i = 2; i <= s; i += 2) {
+  let sqrtNum = Math.sqrt(n);
+  for (let i = 2; i <= sqrtNum; i += 2) {
     if (n % i == 0) return false;
     return true;
   }
@@ -89,16 +77,12 @@ const isItPrime = n => {
  * @returns {Array}
  */
 const createMatrix = (n, fill) => {
-  //Input Validation
   if (n === undefined) throw new Error("n is required");
   if (fill === undefined) throw new Error("fill is required");
-
-  // creating the n:n dimension matrix
   const multiArr = [n];
   for (let k = 0; k < n; k++) {
     multiArr[k] = new Array(n);
   }
-
   // filling the values for the defined matrix
   for (var i = 0; i < n; i++) {
     for (var j = 0; j < n; j++) {
@@ -121,19 +105,13 @@ const createMatrix = (n, fill) => {
  * @returns {Boolean}
  */
 const areWeCovered = (staff, day) => {
-  //Input Validation
   if (staff === undefined) throw new Error("staff is required");
   if (day === undefined) throw new Error("day is required");
-
-  // count the number of staff present for the given day
-  let count = 0;
+  let staffMember = 0;
   staff.forEach(item => {
-    if (item.rota.includes(day)) count++
+    if (item.rota.includes(day)) staffMember++
   })
-
-  if (count > 2) return true;
-  else return false;
-
+  return (staffMember > 2) ? true : false;
 };
 
 module.exports = {

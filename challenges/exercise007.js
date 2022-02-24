@@ -3,10 +3,8 @@
  * @param {Number} n
  */
 const sumDigits = n => {
-  //Input Validation
   if (n === undefined) throw new Error("n is required");
-  // sum of all its digits
-  return n.reduce((a, b) => a + b, 0);
+  return n.toString().split('').map(Number).reduce((a, b) => a + b, 0);
 };
 
 /**
@@ -18,15 +16,14 @@ const sumDigits = n => {
  * @param {Number} step
  */
 const createRange = (start, end, step) => {
-  //Input Validation
   if (start === undefined) throw new Error("start is required");
   if (end === undefined) throw new Error("end is required");
-  // Assign
-  let newArr = [];
+  if (start <= end) start;
+  let range = [];
   for (let i = start; i < end; i = i + step) {
-    newArr.push(i);
+    range.push(i);
   }
-  return newArr;
+  return range;
 };
 
 /**
@@ -59,10 +56,8 @@ const createRange = (start, end, step) => {
  * @param {Array} users
  */
 const getScreentimeAlertList = (users, date) => {
-  //Input Validation
   if (users === undefined) throw new Error("users is required");
   if (date === undefined) throw new Error("date is required");
-  // search for record which is matching specified  date and check for application usage exceeding 100mins and return the username of matching record
   let userArr = [];
   users.forEach(user => {
     user.screenTime.forEach(st => {
@@ -88,9 +83,7 @@ const getScreentimeAlertList = (users, date) => {
  * @param {String} str
  */
 const hexToRGB = hexStr => {
-  //into Validation
   if (hexStr === undefined) throw new Error("hexStr is required");
-  // convert 2 digit hexdecimal to decimal and assign it RGB variable in the specified format
   var r = parseInt(hexStr.slice(1, 3), 16),
     g = parseInt(hexStr.slice(3, 5), 16),
     b = parseInt(hexStr.slice(5, 7), 16);
@@ -110,6 +103,17 @@ const hexToRGB = hexStr => {
 const findWinner = board => {
   if (board === undefined) throw new Error("board is required")
 
+  for (let i = 0; i <= 2; i++) {
+    if ((board[i][0] === "X" && board[i][1] === "X" && board[i][2] === "X") ||
+      (board[0][i] === "X" && board[1][i] === "X" && board[2][i] === "X")) {
+
+      return "X is winner";
+    } else if ((board[i][0] === "0" && board[i][1] === "0" && board[i][2] === "0") ||
+      (board[0][i] === "0" && board[1][i] === "0" && board[2][i] === "0")) {
+      return "0 is winner";
+    }
+  }
+  return null;
 };
 
 module.exports = {

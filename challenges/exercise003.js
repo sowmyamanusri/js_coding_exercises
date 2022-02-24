@@ -1,9 +1,5 @@
 function getSquares(nums) {
-
-  //Input Validation
   if (nums === undefined) throw new Error("nums is required");
-
-  //return empty array if there are no items
   if (nums.length === 0) return [];
   return nums.map(num => num * num);
 
@@ -11,64 +7,47 @@ function getSquares(nums) {
 
 
 function camelCaseWords(words) {
-  //Input Validation
   if (words === undefined) throw new Error("words is required");
-
-  // converting array of words to camel case string
-  let myVar = words[0].toLowerCase();
+  let word = words[0].toLowerCase();
   for (let index = 1; index < words.length; index++) {
     words[index] = words[index].toLowerCase().charAt(0).toUpperCase() + words[index].substring(1, words[index].length);
-    myVar = myVar + words[index];
+    word = word + words[index];
   }
-  return myVar;
+  return word;
 }
 
 function getTotalSubjects(people) {
   //Input Validation
   if (people === undefined) throw new Error("people is required");
-
-  // calculate total number of subjects in the people collection
   let subCount = 0;
   let subject = [];
+
   for (let item of people) {
     if (item.subjects.length !== 0) subCount++;
     for (let sub of item.subjects) {
       subject.push(sub);
     }
   }
-  //return 0,if no subjects found .Return 1 at least one subject found, else return total subjects
-  if (subCount === 0) return 0;
-  if (subCount === 1) return 1;
-  else {
-    return subject.length;
-  }
+  return subCount === 0 ? 0 : subCount == 1 ? 1 : subject.length;
 
 }
 
+
 function checkIngredients(menu, ingredient) {
-  //Input Validation
+
   if (menu === undefined) throw new Error("menu is required");
   if (!ingredient) throw new Error("ingredient is required");
-
-  // find the ingredient in the given menu
-  let count = 0;
-  for (let list of menu) {
-    if (list.ingredients.includes(ingredient)) count++;
-  }
-  if (count === 0) {
-    return false;
-  } else {
-    return true;
-  }
+  let ingredientCount = 0;
+  menu.forEach(list => list.ingredients.forEach(item => {
+    if (item.includes(ingredient)) ingredientCount++
+  }));
+  return (ingredientCount === 0 ? false : true);
 }
 
 function duplicateNumbers(arr1, arr2) {
-  //Input Validation
   if (arr1 === undefined) throw new Error("arr1 is required");
   if (arr2 === undefined) throw new Error("arr2 is required");
-  // returning the new array by removing duplicates
-  let filterArr = (arr1.filter((value) => arr2.includes(value))).sort();
-  return [...new Set(filterArr)];
+  return [...new Set((arr1.filter((value) => arr2.includes(value))).sort())];
 
 }
 
